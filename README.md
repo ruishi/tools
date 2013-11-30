@@ -9,5 +9,9 @@ Written in Java. Given a txt file with a list of items, Delta will choose one fo
 
 
 plc
------
+---
 Written in Python. Given one or more directories as input, it will find all audio files and create Media Player Classic playlists for each directory.
+
+namestrip
+---------
+Written in Python. Given a directory it batch renames files based on a given criteria. For instance, providing "alpha" as criteria will rename files to only contain alpha characters. 
