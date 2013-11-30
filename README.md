@@ -14,4 +14,5 @@ Written in Python. Given one or more directories as input, it will find all audi
 
 namestrip
 ---------
-Written in Python. Given a directory it batch renames files based on a given criteria. For instance, providing "alpha" as criteria will rename files to only contain alpha characters. 
+Written in Python. Given a directory it batch renames files based on a given criteria. For instance, providing "alpha" as criteria will rename files to only contain alpha characters.
+Originally written because I wanted to remove the Chinese characters from 
