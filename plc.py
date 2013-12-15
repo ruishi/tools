@@ -4,6 +4,7 @@
 #      playlist consisting of all audio-files within
 #TODO: -'a' flag to direct program to create playlists for all
 #       subdirectories
+#      -'o' flag to specify output directory
 ################################################################################
 
 import os, sys
@@ -15,7 +16,8 @@ def main(argv):
         if arg[-1] != os.sep:
             arg += os.sep
 
-        pname = arg.split(os.sep)[-2] #make the playlist the same name as the directory
+        pname = arg.split(os.sep)[-2] #make the playlist the same name as the 
+                                      #directory
 
         with open(arg + pname + '.mpcpl', encoding='utf-8', mode='w') as pl:
             pl.write('MPCPLAYLIST\n')
