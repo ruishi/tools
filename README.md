@@ -5,7 +5,7 @@ Listing
 
 Delta
 -------
-Written in Java. Given a txt file with a list of items, Delta will choose one for you using a PRNG. Each item is denoted with a '>>' or a '<<'. When choosing, Delta will ignore all items prefixed with '<<'. This is useful if you don't want any item to be chosen more than once. Originally written to decrease the embarassing amount of time my indecisive roommate and I spent deciding what to do.
+Written in Java. Given a txt file with a list of items, Delta will choose one for you using a PRNG. Each item is denoted with a '>>' or a '<<'. When choosing, Delta will ignore all items prefixed with '<<'. This is useful if you don't want any item to be chosen more than once. Originally written to decrease the embarassing amount of time my indecisive college roommate and I spent deciding what to do.
 
 
 plc
