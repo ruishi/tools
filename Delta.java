@@ -10,12 +10,12 @@ public class Delta
 
 	if (args.length == 0)
 	{
-	    System.out.println("Usage: ChoiceMaker [-o|r|rs|d] <filename>");
+	    System.out.println("Usage: Delta [-o|r|rs|d] <filename>");
 	    System.exit(0);
 	}
 	else if(args.length == 1)
 	{
-	    System.out.println("Usage: ChoiceMaker [-o|r|rs|d] <filename>");
+	    System.out.println("Usage: Delta [-o|r|rs|d] <filename>");
 	    
 	}
 	else
@@ -67,7 +67,7 @@ public class Delta
 
 	if(!choices.isEmpty())
 	{
-	    MersenneTwisterFast rChoice = new MersenneTwisterFast();
+	    Random rChoice = new Random(System.currentTimeMillis());
 	    int fc = rChoice.nextInt(choices.size()); //final choice
 	    System.out.println("Go with " + choices.get(fc) + "!");
 	    for(int i = 0; i < choices.size(); i++)
@@ -121,7 +121,7 @@ public class Delta
 
 	if(!choices.isEmpty())
 	{
-	    MersenneTwisterFast rChoice = new MersenneTwisterFast();
+	    Random rChoice = new Random(System.currentTimeMillis());
 	    int fc = rChoice.nextInt(choices.size()); //final choice
 	    System.out.println("Go with " + choices.get(fc) + "!");
 	}
