@@ -32,26 +32,25 @@ def rename(directory, criteria, filetype = None):
     else:
         files = [x for x in glob.glob(directory + '*') if os.path.isfile(x)]
 
+    error_str = "Renaming %s would result in an invalid filename. Skipping rename."
+
     for f in files:
         filename = os.path.split(f)[1]
         name, filetype = os.path.splitext(filename)
         if criteria == 'alphanum':
             newname = ''.join([x for x in name if x.isalnum()])
             if len(newname) == 0:
-                print("Renaming " + filename + " results in invalid filename."
-                      + " Skipping rename.")
+                print(error_str % filename)
                 newname = name
         elif criteria == 'alpha':
             newname = ''.join([x for x in name if x.isalpha()])
             if len(newname) == 0:
-                print("Renaming " + filename + " results in invalid filename."
-                      + " Skipping rename.")
+                print(error_str % filename)
                 newname = name
         elif criteria == 'num':
             newname = ''.join([x for x in name if x.isdigit()])
             if len(newname) == 0:
-                print("Renaming " + filename + " results in invalid filename."
-                      + " Skipping rename.")
+                print(error_str % filename)
                 newname = name
         newfile = os.path.join(directory, newname + filetype)
         os.rename(f, newfile)
