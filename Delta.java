@@ -5,30 +5,41 @@ public class Delta
 {
     public static void main(String[] args)
     {
-	String choiceType = "";
-	String filename = "";
+	String choiceType = null;
+	String filename = null;
+	String usage = "Usage: Delta [-h] ("
+	    + "-r REPEAT | "
+	    + "-rs RESTART | "
+	    + "-d DELTAFY) "
+	    + "<filename>";
 
-	if (args.length == 0)
+	if (args.length == 0 || args.length > 2) 
 	{
-	    System.out.println("Usage: Delta [-o|r|rs|d] <filename>");
+	    System.out.println(usage);
 	    System.exit(0);
 	}
-	else if(args.length == 1)
+	else if (args.length == 1)
 	{
-	    System.out.println("Usage: Delta [-o|r|rs|d] <filename>");
-	    
+	    if ("-h".equals(args[0]))
+	    {
+		choiceType = args[0];
+	    }
+	    else
+	    {
+		choiceType="default";
+		filename = args[0];
+	    }
 	}
 	else
 	{
 	    choiceType = args[0];
 	    filename = args[1];
-	    switch(choiceType.toLowerCase())
-	    {
-	    case "-o":
-		justOnce(filename);
-		break;
+	}
+	    
+	switch(choiceType.toLowerCase())
+	{
 	    case "-r":
-		repeatable(filename);
+		repeat(filename);
 		break;
 	    case "-rs":
 		restart(filename);
@@ -36,13 +47,38 @@ public class Delta
 	    case "-d":
 		deltafy(filename);
 		break;
+	    case "-h":
+		String descriptor = "\nMakes a decision given a list of choices.\n";
+		System.out.println(usage);
+		System.out.println(descriptor);
+		System.out.print("Positional arguments:");
+		printArgs("filename", "The name of the file which has the choices."
+			  + "There should be one choice per line.\n");
+		System.out.print("\nOptional arguments:");
+		printArgs("-h", "Show this help message and exit");
+		printArgs("-r", "Allow for repeat choices. By default, Delta skips"
+			  + " over any options chosen in");
+		printArgs("", "previous runs. Note this option does not reset the \"chosen\" flag for any ");
+		printArgs("","previously chosen items in the file.");
+		printArgs("-rs", "\"Restart\" a file if you've exhausted all the choices without using" 
+			  + " the repeat flag.");
+		printArgs("-d", "\"Deltafy.\" Delta uses \'>>\' and \'<<\' as markers to denote whether a" 
+			  + " choice has been");
+		printArgs("", "previously chosen or not. This will automatically add  \'>>\' to each choice" 
+			  + " in a file.");
+		printArgs("", "Currently these markers are required for Delta to parse a file.\n");
+		break;
 	    default:
-		System.out.println("Usage: ChoiceMaker [-o|r|rs] <filename>");
-	    }
+		once(filename);
 	}
     }
 
-    public static void justOnce(String filename)
+    public static void printArgs(String argument, String description)
+    {
+	System.out.printf("\n%-8s %-40s", argument, description);
+    }
+
+    public static void once(String filename)
     {
 	String line;
 	ArrayList<String> choices = new ArrayList<String>();
@@ -95,10 +131,10 @@ public class Delta
 	    catch(IOException e) {}
 	}
 	else 
-	    System.out.println("You have nothing to choose from, you dork!");
+	    System.out.println("You have nothing to choose from!");
     }
 
-    public static void repeatable(String filename)
+    public static void repeat(String filename)
     {
 	String line;
 	ArrayList<String> choices = new ArrayList<String>();
@@ -126,7 +162,7 @@ public class Delta
 	    System.out.println("Go with " + choices.get(fc) + "!");
 	}
 	else
-	    System.out.println("You have nothing to choose from, you dork!");
+	    System.out.println("You have nothing to choose from!");
 
     }
 
@@ -192,6 +228,4 @@ public class Delta
 	}
 	catch(IOException e) {}
     }
-   
-
 }
