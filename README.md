@@ -42,4 +42,5 @@ Written in Python. Given a recipe (either from a file or standard
 input) and a ratio, it will adjust accordingly and print the new recipe.
 
 Recipes entered via standard input must be in quotes and comma
-separated: "2 cups flour, 1 cup sugar, 2 eggs"
+separated: "2 cups flour, 1 cup sugar, 2 eggs". Recipes in a file must
+have one ingredient per line.
