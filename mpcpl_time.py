@@ -57,9 +57,9 @@ def calculate_duration_units(total_seconds):
 
 def print_duration(duration):
     print("Playlist duration:", end=' ')
-    duration_str  = ', '.join("{} {}".format(length, unit)
-                              for unit, length in duration.items()
-                              if length > 0)
+    duration_str  = ''.join("{}{}".format(length, unit[0])
+                             for unit, length in duration.items()
+                             if length > 0)
     print(duration_str)
 
 if __name__ == '__main__':
