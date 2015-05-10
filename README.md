@@ -34,3 +34,12 @@ reason MPC does not display this information (or at least, makes it
 difficult to find how to display it!).
 
 mpcpl_time uses the library hsaudiotag3k, which can be installed via pip.
+
+recipe_adjuster
+---------------
+
+Written in Python. Given a recipe (either from a file or standard
+input) and a ratio, it will adjust accordingly and print the new recipe.
+
+Recipes entered via standard input must be in quotes and comma
+separated: "2 cups flour, 1 cup sugar, 2 eggs"
