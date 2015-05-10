@@ -33,7 +33,7 @@ file, it will calculate the total duration of the playlist. For some
 reason MPC does not display this information (or at least, makes it
 difficult to find how to display it!).
 
-mpcpl_time uses the library hsaudiotag3k, which can be installed via pip.
+mpcpl_time uses the library hsaudiotag3k 1.1.3, which can be installed via pip.
 
 recipe_adjuster
 ---------------
