@@ -37,10 +37,24 @@ mpcpl_time uses the library hsaudiotag3k 1.1.3, which can be installed via pip.
 
 recipe_adjuster
 ---------------
-
 Written in Python. Given a recipe (either from a file or standard
 input) and a ratio, it will adjust accordingly and print the new recipe.
 
 Recipes entered via standard input must be in quotes and comma
 separated: "2 cups flour, 1 cup sugar, 2 eggs". Recipes in a file must
 have one ingredient per line.
+
+subchecker
+----------
+Written in Python. Given a subtitle file and a specification file,
+subchecker will check to see if the subtitles meet the requirements
+defined in the specification file.
+
+Each requirement in a specification file must be in the following format:
+> KEY: value
+
+Currently, subchecker can only ensure that subtitles do not exceed a
+certain time or a certain amount of characters. Use the keys MAX_CHARS
+and MAX_TIME to define either in your specification file.
+
+For now only .srt files are supported.
