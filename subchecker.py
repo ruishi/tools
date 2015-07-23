@@ -4,7 +4,7 @@ import argparse
 from collections import namedtuple
 from datetime import timedelta
 
-Subtitle = namedtuple('Subtitle', ['line', 'start', 'end', 'content'])
+Subtitle = namedtuple('Subtitle', ['start', 'end', 'content'])
 
 def chunk_srt(srt_filepath):
     """Extract relevant info from srt file
@@ -15,7 +15,6 @@ def chunk_srt(srt_filepath):
     """
     have_time = False
     blank_line = False
-    line_num = 0
     subtitles = list()
     content = list()
 
@@ -30,9 +29,7 @@ def chunk_srt(srt_filepath):
             elif have_time and not blank_line:
                 content.append(line)
             elif blank_line:
-                line_num += 1
-                subtitles.append(Subtitle(line_num, start,
-                                          end.strip(),
+                subtitles.append(Subtitle(start, end.strip(),
                                           tuple(content)))
                 have_time = False
                 blank_line = False
@@ -91,10 +88,10 @@ def check_char_count(subtitles, max_chars):
     if not max_chars:
         return
     violations = 0
-    for subtitle in subtitles:
+    for idx, subtitle in enumerate(subtitles):
         char_count = calc_num_chars(subtitle.content)
         if char_count > max_chars:
-            print("Line {}: Character count violation, {} characters".format(subtitle.line, char_count))
+            print("Line {}: Character count violation, {} characters".format(idx+1, char_count))
             violations += 1
     return violations
 
@@ -108,11 +105,11 @@ def check_duration(subtitles, max_time):
     if not max_time:
         return
     violations = 0
-    for subtitle in subtitles:
+    for idx, subtitle in enumerate(subtitles):
         duration = calc_screen_time(subtitle.start, subtitle.end)
         if duration.seconds > max_time or (duration.seconds ==
                                            max_time and duration.microseconds * 1000 > 0):
-            print("Line {}: Time violation, {} seconds".format(subtitle.line, duration))
+            print("Line {}: Time violation, {} seconds".format(idx+1, duration))
             violations += 1
     return violations
 
@@ -124,7 +121,7 @@ def validate(subtitles, spec):
     if time_fails == 0 and char_fails == 0:
         print("Subtitle requirements satisfied.")
     else:
-        print("{} character count violations, {} time violtions".format(char_fails, time_fails))
+        print("\n{} character count violations, {} time violtions".format(char_fails, time_fails))
 
 def main(subs, spec):
     subtitles = chunk_srt(subs)
