@@ -44,6 +44,15 @@ Recipes entered via standard input must be in quotes and comma
 separated: "2 cups flour, 1 cup sugar, 2 eggs". Recipes in a file must
 have one ingredient per line.
 
+### Usage Examples
+```sh
+python -d "4 cups flour, 1 cup sugar, 2 eggs" -r 1/2
+```
+
+```sh
+python -f "sugarcookies.txt" -r 2
+```
+
 subchecker
 ----------
 Written in Python. Given a subtitle file and a specification file,
@@ -53,8 +62,8 @@ defined in the specification file.
 Each requirement in a specification file must be in the following format:
 > KEY: value
 
-Currently, subchecker can only ensure that subtitles do not exceed a
-certain time or a certain amount of characters. Use the keys MAX_CHARS
-and MAX_TIME to define either in your specification file.
+Currently, subchecker can only check for violations of character or
+time constraints. Use the keys MAX_CHARS, MIN_TIME, and MAX_TIME to
+define those constraints in your specification file.
 
 For now only .srt files are supported.
